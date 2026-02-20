@@ -25,7 +25,9 @@ $toggle_bg_color: if($trans == 'true', rgba(white, 0.15), $popover_bg_color);
 $toggle_menu_bg_color: if($trans =='true', rgba(white, 0.25), $popover_bg_color);
 $toggle_hover_bg_color: if($trans == 'true', rgba(white, 0.2), mix($fg_color, $popover_bg_color, 10%));
 $toggle_active_bg_color: if($trans =='true', rgba(white, 0.25), mix($fg_color, $popover_bg_color, 15%));
-$toggle_checked_bg_color: if($trans =='true', rgba(white, 0.15), $popover_bg_color);
+$toggle_checked_bg_color: if($trans =='true', white, $primary_color);
+$toggle_checked_fg_color: if($trans =='true', $primary_color, white);
+$toggle_menu_checked_bg_color: if($trans =='true', rgba(white, 0.15), $popover_bg_color);
 $toggle_shadow: if($trans == 'true', inset 0 0 4px rgba(white, 0.35), 0 5px 10px 0 rgba(black, 0.18));
 
 .quick-toggle, .quick-toggle-has-menu {
@@ -54,24 +56,24 @@ $toggle_shadow: if($trans == 'true', inset 0 0 4px rgba(white, 0.35), 0 5px 10px
   }
 
   &:checked {
-    background-color: $light_fg_color !important;
-    color: $primary_color;
+    background-color: $toggle_checked_bg_color !important;
+    color: $toggle_checked_fg_color;
 
     &:hover {
-      color: $primary_color;
+      color: $toggle_checked_fg_color;
       @if $shell_version == 'old' {
-        background-color: mix($text_color, $light_fg_color, 6%) !important;
+        background-color: mix($text_color, $toggle_checked_bg_color, 6%) !important;
       } @else {
-        background-color: st-mix($text_color, $light_fg_color, 6%) !important;
+        background-color: st-mix($text_color, $toggle_checked_bg_color, 6%) !important;
       }
     }
 
     &:active {
-      color: $primary_color;
+      color: $toggle_checked_fg_color;
       @if $shell_version == 'old' {
-        background-color: mix($text_color, $light_fg_color, 15%) !important;
+        background-color: mix($text_color, $toggle_checked_bg_color, 15%) !important;
       } @else {
-        background-color: st-mix($text_color, $light_fg_color, 15%) !important;
+        background-color: st-mix($text_color, $toggle_checked_bg_color, 15%) !important;
       }
     }
   }
@@ -111,7 +113,7 @@ $toggle_shadow: if($trans == 'true', inset 0 0 4px rgba(white, 0.35), 0 5px 10px
   }
 
   &:checked {
-    background-color: $toggle_checked_bg_color !important;
+    background-color: $toggle_menu_checked_bg_color !important;
   }
 
   & .quick-toggle {
@@ -142,8 +144,8 @@ $toggle_shadow: if($trans == 'true', inset 0 0 4px rgba(white, 0.35), 0 5px 10px
     }
 
     &:checked .quick-toggle-icon {
-      color: $primary_color;
-      background-color: $toggle_fg_color;
+      color: $toggle_checked_fg_color;
+      background-color: $toggle_checked_bg_color;
     }
 
     &:ltr { border-radius: $circular_radius; }
